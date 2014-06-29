@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS recipe(
    recipeID INTEGER PRIMARY KEY, 
    userID INTEGER,
    categories TEXT,
-   title TEXT,
+   name TEXT,
    source TEXT,
    author TEXT,
    serves INTEGER,
@@ -29,7 +29,6 @@ CREATE TABLE IF NOT EXISTS ingredient(
    foodID INTEGER,
    recipeID INTEGER
    categories TEXT,
-   name TEXT,
    quantity INTEGER,
    weight REAL,
    weightUnit TEXT,
@@ -48,6 +47,7 @@ CREATE TABLE IF NOT EXISTS instruction(
    instructionID INTEGER PRIMARY KEY,
    recipeID INTEGER
    userID INTEGER,
+   text TEXT,
    categories TEXT,
    stepNum INTEGER,
    isOptional INTEGER,
