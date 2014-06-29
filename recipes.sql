@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS ingredient(
    weightUnit TEXT,
    volume REAL,
    volumeUnit TEXT,
-   price REAL,
+   price REAL
 );
 
 CREATE TABLE IF NOT EXISTS ingrInstr(
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS instruction(
    isOptional INTEGER,
    notes TEXT,
    startTimeHrs INTEGER,
-   startTimeMin INTEGER,
+   startTimeMin INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS favoriteRecipes(
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS user(
    userID INTEGER PRIMARY KEY,
    name TEXT,
    password TEXT,
-   username TEXT,
+   username TEXT
 );  
 
 CREATE TABLE IF NOT EXISTS shoppingList(
