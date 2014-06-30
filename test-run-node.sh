@@ -1,2 +1,2 @@
 #!/bin/bash
-DEBUG=recipe.db ./bin/www
+DEBUG=recipe.db supervisor ./bin/www
