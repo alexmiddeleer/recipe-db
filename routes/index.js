@@ -1,36 +1,26 @@
 var express = require('express')
-  , sqlite3 = require('sqlite3').verbose()
-  , ready = false;
+   , dbal = require('../dbal/dbal.js')
+   , testUser = 1;
 ;
 
 var router = express.Router();
 
-db = new sqlite3.Database('recipes.db', sqlite3.OPEN_READONLY, function(err) {
-   if(!err){
-     ready=true;
-   }
-});
+function dbNotReady () {
+  res.err('Sorry, the database is not ready.  Please try again in a moment');
+}
+
+function modelReady (res, recipes) {
+   res.render('index', { 
+      title: 'Recipe.db',
+      recipes: recipes
+   });
+}
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  if (ready) {
-   var recipes = [];
-   db.serialize(function() {
-      db.each("SELECT name AS name FROM recipe;", function(err, row){
-         if (err) {
-            res.err("err:"+err);
-         }
-         recipes.push(row.name);
-      }, function() {
-         res.render('index', { 
-            title: 'Recipe.db',
-            recipes: recipes
-         });
-      });
-   });
-  } else {
-   res.end('the database is not ready');
-  }
+   dbal.getRecipes(testUser, function(recipes) {
+      modelReady(res, recipes);
+   }, dbNotReady);
 });
 
 module.exports = router;
