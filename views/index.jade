@@ -3,5 +3,7 @@ extends layout
 block content
   h1= title
   ul Here are your recipes:
-   each recipeName in recipes
-      li= recipeName
+   each recipe in recipes
+      li
+         a.recipeName(href='./recipe/'+ recipe.id) 
+            =recipe.name

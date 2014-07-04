@@ -4,7 +4,7 @@ var eventEmitter = new (require('events')).EventEmitter()
 
 getRecipes = function(db, userID, cb){
    var recipes = []
-   , recipeQuery = 'SELECT name AS name FROM recipe'+
+   , recipeQuery = 'SELECT recipeID AS id, name AS name FROM recipe'+
       ' WHERE userID = ' + userID + ';'
    ;
 
@@ -12,7 +12,7 @@ getRecipes = function(db, userID, cb){
       db.each( recipeQuery
          , function processRow(err, row){
             err && eventEmitter.emit('error',err);
-            recipes.push(row.name);
+            recipes.push(row);
          }
          , function done() {
             cb(recipes);
