@@ -24,6 +24,17 @@ function getRecipes(userID, cb, notReady){
    }
 };
 
+function getRecipe(userID, recipeID, cb, notReady){
+   if( ready ){
+       recipeDM.getRecipe(db, userID, recipeID, function(recipe) {
+          cb(recipe);
+       });
+   } else {
+      notReady(true);
+   }
+};
+
 module.exports = {
-   getRecipes: getRecipes
+   getRecipes: getRecipes,
+   getRecipe: getRecipe
 };

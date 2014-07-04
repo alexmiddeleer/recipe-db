@@ -18,12 +18,9 @@ function modelReady (res, recipe) {
 /* GET home page. */
 router.get('/:recipeID', function(req, res) {
    recipeID = req.params.recipeID;
-   modelReady( res, {
-      name: "a cool recipe, id = " + recipeID
-   });
-   // dbal.getRecipe(testUser, recipeID function(recipe) {
-   //    modelReady(res, recipes);
-   // }, dbNotReady);
+   dbal.getRecipe(testUser, recipeID, function(recipe) {
+      modelReady(res, recipe);
+   }, dbNotReady);
 });
 
 module.exports = router;

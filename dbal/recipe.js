@@ -4,7 +4,7 @@ var eventEmitter = new (require('events')).EventEmitter()
 
 getRecipes = function(db, userID, cb){
    var recipes = []
-   , recipeQuery = 'SELECT recipeID AS id, name AS name FROM recipe'+
+   , recipeQuery = 'SELECT recipeID AS id, name FROM recipe'+
       ' WHERE userID = ' + userID + ';'
    ;
 
@@ -21,6 +21,23 @@ getRecipes = function(db, userID, cb){
    });
 };
 
+getRecipe = function(db, userID, recipeID, cb){
+   var recipeQuery = 'SELECT name  FROM recipe'+
+      ' WHERE userID = ' + userID + 
+      ' AND recipeID = ' + recipeID
+   ;
+
+   db.serialize( function () {
+      db.get( recipeQuery
+         , function processRow(err, row){
+            err && eventEmitter.emit('error',err);
+            cb(row);
+         }
+      );
+   });
+};
+
 module.exports = {
    getRecipes: getRecipes
+   , getRecipe: getRecipe
 }
