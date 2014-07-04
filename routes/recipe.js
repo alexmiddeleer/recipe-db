@@ -11,7 +11,8 @@ function dbNotReady () {
 
 function modelReady (res, recipe) {
    res.render('recipe', { 
-      title: recipe.name
+      title: recipe.name,
+      steps: recipe.steps
    });
 }
 

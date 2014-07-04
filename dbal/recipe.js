@@ -22,16 +22,32 @@ getRecipes = function(db, userID, cb){
 };
 
 getRecipe = function(db, userID, recipeID, cb){
-   var recipeQuery = 'SELECT name  FROM recipe'+
-      ' WHERE userID = ' + userID + 
-      ' AND recipeID = ' + recipeID
+   var recipeQuery = 'SELECT name, text as stepText ' +
+      ' FROM recipe, instruction'+
+      ' WHERE recipe.recipeID = instruction.recipeID' +
+      ' AND recipe.userID = ' + userID + 
+      ' AND recipe.recipeID = ' + recipeID
    ;
 
+   var prettify = function(rows) {
+      var result = {
+        name:"noname",
+        steps:[]
+      };
+
+      for (var i = 0; i < rows.length; i++) {
+         result.name = rows[i].name;
+         result.steps.push(rows[i].stepText);
+      };
+      
+      cb(result);
+   };
+
    db.serialize( function () {
-      db.get( recipeQuery
-         , function processRow(err, row){
+      db.all( recipeQuery
+         , function getRows(err, rows){
             err && eventEmitter.emit('error',err);
-            cb(row);
+            prettify(rows);
          }
       );
    });
