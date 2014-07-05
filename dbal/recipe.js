@@ -22,32 +22,53 @@ getRecipes = function(db, userID, cb){
 };
 
 getRecipe = function(db, userID, recipeID, cb){
-   var recipeQuery = 'SELECT name, text as stepText ' +
+   var stepsQuery = 'SELECT name, text as stepText ' +
       ' FROM recipe, instruction'+
       ' WHERE recipe.recipeID = instruction.recipeID' +
       ' AND recipe.userID = ' + userID + 
       ' AND recipe.recipeID = ' + recipeID
    ;
+   var ingredQuery = 'SELECT name' +
+      ' FROM food, ingredient'+
+      ' WHERE ingredient.foodID = food.foodID' +
+      ' AND ingredient.userID = ' + userID + 
+      ' AND ingredient.recipeID = ' + recipeID
+   ;
 
-   var prettify = function(rows) {
+   var prettify = function(stepRows, ingredRows) {
       var result = {
         name:"noname",
-        steps:[]
+        steps:[],
+        ingredients:[]
       };
 
-      for (var i = 0; i < rows.length; i++) {
-         result.name = rows[i].name;
+      var rows = stepRows;
+      for (i in rows) {
+         (i == 0) && ( result.name = rows[i].name );
          result.steps.push(rows[i].stepText);
+      };
+      var rows = ingredRows;
+      for (i in rows) {
+         result.ingredients.push({
+            'name': rows[i].name
+         });
       };
       
       cb(result);
    };
 
    db.serialize( function () {
-      db.all( recipeQuery
+      steps = [];
+      db.all( stepsQuery
          , function getRows(err, rows){
             err && eventEmitter.emit('error',err);
-            prettify(rows);
+            steps = rows;
+         }
+      );
+      db.all( ingredQuery
+         , function getRows(err, ingredients){
+            err && eventEmitter.emit('error',err);
+            prettify(steps, ingredients);
          }
       );
    });

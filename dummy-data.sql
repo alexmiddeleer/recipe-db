@@ -15,6 +15,7 @@ INSERT INTO food(foodID, userID, categories, name)
 INSERT INTO ingredient(ingredientID, userID, foodID, recipeID, weight, weightUnit)
    values
      (1, 1, 1, 1, '1', 'pound')
+   , (3, 1, 3, 2, '1', 'pound')
    , (2, 1, 2, 2, '2', 'pound')
 ;
 

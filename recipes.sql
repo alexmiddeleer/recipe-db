@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS recipe(
    , cookTimeMinutes INTEGER
    , prepTimeHours INTEGER
    , prepTimeMinutes INTEGER
-   , date TEXT
+   , dateProp TEXT
    , nutrNotes TEXT
 );
 
