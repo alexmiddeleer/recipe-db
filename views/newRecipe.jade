@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  form
+    fieldset
+      legend New Recipe
+      p
+        input( type='text' placeholder='Recipe Name')
+        input( id='source' type='text')
+        input( id='author' type='text')
+        input( id='serves' type='text')
+        input( id='categories' type='text')
+        input( id='cookTimeHrs' type='text')
+        input( id='cookTimeMins' type='text')
+        input( id='prepTimeHrs' type='text')
+        input( id='prepTimeMins' type='text')
+        input( id='date' type='text')
+        input( id='nutritional notes' type='text')
+
+      h3 Ingredients
+      p 
+        input( id='foodName' type='text')
+        input( id='foodID' type='text')
+        input( id='categories' type='text')
+        input( id='quantity' type='text')
+        input( id='weight' type='text')
+        input( id='weightUnit' type='text')
+        input( id='volume' type='text')
+        input( id='volumeUnit' type='text')
+        input( id='price' type='text')
+
+      h3 Instructions
+      p 
+        input( id='text' type='text')
+        input( id='stepNum' type='text')
+        input( id='isOptional' type='text')
+        input( id='notes' type='text')
+        input( id='startTimeHrs' type='text')
+        input( id='startTimeMin' type='text')

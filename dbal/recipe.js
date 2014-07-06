@@ -47,7 +47,8 @@ getRecipe = function(db, userID, recipeID, cb){
          (i == 0) && ( result.name = rows[i].name );
          result.steps.push(rows[i].stepText);
       };
-      var rows = ingredRows;
+      
+      rows = ingredRows;
       for (i in rows) {
          result.ingredients.push({
             'name': rows[i].name
