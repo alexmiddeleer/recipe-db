@@ -15,8 +15,13 @@ function modelReady (res) {
    });
 }
 
-/* GET home page. */
 router.get('/', function(req, res) {
+   modelReady(res);
+});
+
+router.post('/', function(req, res) {
+   // If an array of foodnames with html name foodName[]...
+   console.log(req.param('foodName'));
    modelReady(res);
 });
 

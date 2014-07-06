@@ -1,39 +1,52 @@
 extends layout
 
 block content
-  form
+  form( method="POST" )
     fieldset
       legend New Recipe
       p
         input( type='text' placeholder='Recipe Name')
-        input( id='source' type='text')
-        input( id='author' type='text')
-        input( id='serves' type='text')
-        input( id='categories' type='text')
-        input( id='cookTimeHrs' type='text')
-        input( id='cookTimeMins' type='text')
-        input( id='prepTimeHrs' type='text')
-        input( id='prepTimeMins' type='text')
-        input( id='date' type='text')
-        input( id='nutritional notes' type='text')
+        input( name='source' type='text')
+        input( name='author' type='text')
+        input( name='serves' type='text')
+        input( name='categories' type='text')
+        input( name='cookTimeHrs' type='text')
+        input( name='cookTimeMins' type='text')
+        input( name='prepTimeHrs' type='text')
+        input( name='prepTimeMins' type='text')
+        input( name='date' type='text')
+        input( name='nutritional notes' type='text')
 
       h3 Ingredients
       p 
-        input( id='foodName' type='text')
-        input( id='foodID' type='text')
-        input( id='categories' type='text')
-        input( id='quantity' type='text')
-        input( id='weight' type='text')
-        input( id='weightUnit' type='text')
-        input( id='volume' type='text')
-        input( id='volumeUnit' type='text')
-        input( id='price' type='text')
+        input( name='foodName[]' type='text')
+        input( name='foodID[]' type='text')
+        input( name='categories[]' type='text')
+        input( name='quantity[]' type='text')
+        input( name='weight[]' type='text')
+        input( name='weightUnit[]' type='text')
+        input( name='volume[]' type='text')
+        input( name='volumeUnit[]' type='text')
+        input( name='price[]' type='text')
+      p 
+        input( name='foodName[]' type='text')
+        input( name='foodID[]' type='text')
+        input( name='categories[]' type='text')
+        input( name='quantity[]' type='text')
+        input( name='weight[]' type='text')
+        input( name='weightUnit[]' type='text')
+        input( name='volume[]' type='text')
+        input( name='volumeUnit[]' type='text')
+        input( name='price[]' type='text')
 
       h3 Instructions
       p 
-        input( id='text' type='text')
-        input( id='stepNum' type='text')
-        input( id='isOptional' type='text')
-        input( id='notes' type='text')
-        input( id='startTimeHrs' type='text')
-        input( id='startTimeMin' type='text')
+        input( name='text[]' type='text')
+        input( name='stepNum[]' type='text')
+        input( name='isOptional[]' type='text')
+        input( name='notes[]' type='text')
+        input( name='startTimeHrs[]' type='text')
+        input( name='startTimeMin[]' type='text')
+
+      p
+        input( type='submit' )
