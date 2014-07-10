@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  h1= title
-  ul Here are your recipes:
-   each recipe in recipes
-      li
-         a.recipeName(href='./recipe/'+ recipe.id) 
-            =recipe.name
+  div( ng-controller='recipe-ctrl' )
+    h1= title
+    ul Here are your recipes:
+     li( ng-repeat='recipe in recipes' )
+       a.recipeName( ng-href="{{'./recipe/'+recipe.id}}" )
+        {{recipe.name}}

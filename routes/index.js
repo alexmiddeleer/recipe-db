@@ -10,17 +10,21 @@ function dbNotReady () {
 }
 
 function modelReady (res, recipes) {
-   res.render('index', { 
-      title: 'Recipe.db',
-      recipes: recipes
-   });
+   res.json(recipes);
 }
 
-/* GET home page. */
-router.get('/', function(req, res) {
+/* GET data for home page */
+router.get('/data/recipes', function(req, res) {
    dbal.getRecipes(testUser, function(recipes) {
       modelReady(res, recipes);
    }, dbNotReady);
+});
+
+/* GET home page. */
+router.get('/', function(req, res) {
+   res.render('index', { 
+      title: 'Recipe.db'
+   });
 });
 
 module.exports = router;

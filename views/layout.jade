@@ -1,8 +1,10 @@
 doctype html
-html
+html( ng-app='recipe-db' )
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/bower/angular/angular.js')
+    script(src='/js/controller.js')
   body
     a(href="/") home
     block content
