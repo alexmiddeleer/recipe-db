@@ -10,11 +10,7 @@ function dbNotReady () {
 }
 
 function modelReady (res, recipe) {
-   res.render('recipe', { 
-      title: recipe.name,
-      steps: recipe.steps,
-      ingredients: recipe.ingredients
-   });
+   res.json(recipe);
 }
 
 /* GET home page. */
@@ -24,5 +20,6 @@ router.get('/:recipeID', function(req, res) {
       modelReady(res, recipe);
    }, dbNotReady);
 });
+
 
 module.exports = router;

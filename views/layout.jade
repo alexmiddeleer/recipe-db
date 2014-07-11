@@ -4,7 +4,10 @@ html( ng-app='recipe-db' )
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/bower/angular/angular.js')
+    script(src='/bower/angular-route/angular-route.js')
+    script(src='/js/app.js')
     script(src='/js/controller.js')
   body
     a(href="/") home
-    block content
+    div( ng-view )
+      block content

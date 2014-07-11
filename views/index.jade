@@ -1,9 +1,0 @@
-extends layout
-
-block content
-  div( ng-controller='recipe-ctrl' )
-    h1= title
-    ul Here are your recipes:
-     li( ng-repeat='recipe in recipes' )
-       a.recipeName( ng-href="{{'./recipe/'+recipe.id}}" )
-        {{recipe.name}}

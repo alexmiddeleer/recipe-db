@@ -1,0 +1,8 @@
+div( ng-controller='recipe-list-ctrl' )
+  h1
+    | {{title}}
+  h3 Your Recipes:
+  ul
+    li( ng-repeat='recipe in recipes' )
+      a.recipeName( ng-href='#/recipe/{{recipe.id}}' )
+        | {{recipe.name}}

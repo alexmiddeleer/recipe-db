@@ -20,11 +20,8 @@ router.get('/data/recipes', function(req, res) {
    }, dbNotReady);
 });
 
-/* GET home page. */
 router.get('/', function(req, res) {
-   res.render('index', { 
-      title: 'Recipe.db'
-   });
+   res.render('layout');
 });
 
 module.exports = router;

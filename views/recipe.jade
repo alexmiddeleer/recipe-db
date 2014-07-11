@@ -1,12 +1,11 @@
-extends layout
-
-block content
-  h1= title
+div( ng-controller='recipe-ctrl' )
+  h1
+    | {{title}}
   h3 Ingredients
   ul
-    each ingredient in ingredients
-      li= ingredient.name
+    li( ng-repeat='ingredient in ingredients' )
+      | {{ ingredient.name }} 
   h3 Instructions
   ul
-    each step in steps
-      li= step
+    li( ng-repeat='step in steps' )
+      | {{ step }}
