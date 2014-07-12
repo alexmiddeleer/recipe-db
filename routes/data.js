@@ -9,17 +9,21 @@ function dbNotReady () {
   res.err('Sorry, the database is not ready.  Please try again in a moment');
 }
 
-function modelReady (res, recipe) {
-   res.json(recipe);
+function modelReady (res, recipes) {
+   res.json(recipes);
 }
 
-/* GET home page. */
-router.get('/:recipeID', function(req, res) {
+router.get('/recipes', function(req, res) {
+   dbal.getRecipes(testUser, function(recipes) {
+      modelReady(res, recipes);
+   }, dbNotReady);
+});
+
+router.get('/recipe/:recipeID', function(req, res) {
    recipeID = req.params.recipeID;
    dbal.getRecipe(testUser, recipeID, function(recipe) {
       modelReady(res, recipe);
    }, dbNotReady);
 });
-
 
 module.exports = router;

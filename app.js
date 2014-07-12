@@ -8,8 +8,7 @@ var bodyParser = require('body-parser');
 var routes       = require('./routes/index');
 var ngViews      = require('./routes/ngViews');
 var users        = require('./routes/users');
-var recipe       = require('./routes/recipe');
-var newRecipe    = require('./routes/newRecipe');
+var data         = require('./routes/data');
 
 var app = express();
 
@@ -28,9 +27,7 @@ app.use('/bower', express.static(__dirname + '/bower_components'));
 app.use('/', routes);
 app.use('/ng-views', ngViews);
 app.use('/users', users);
-app.use('/recipe', recipe);
-app.use('/data/recipe', recipe);
-app.use('/new/recipe', newRecipe);
+app.use('/data', data);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
