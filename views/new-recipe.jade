@@ -1,0 +1,44 @@
+div( ng-controller='new-recipe-ctrl' )
+  form( method="POST" )
+    fieldset
+      legend New Recipe
+      p Name: 
+         input( type='text' placeholder='Recipe Name')
+         | Source: 
+         input( name='source' type='text' placeholder='AFoodBlog.com')
+         | Author: 
+         input( name='author' type='text') 
+         | Serves:
+         input( name='serves' type='number')
+      h3 Cook Time 
+      p
+         | Hours: 
+         input( name='cookTimeHrs' type='number')
+         | Minutes: 
+         input( name='cookTimeMins' type='number')
+      h3 Notes
+      textArea( name='notes' placeholder='This will be shown near the recipe\'s instructions' )
+      h3 Categories
+      p Adding categories can help you stay organized; For example, you can browse or search for recipes by category.
+      input( name='categories' type='text')
+      | <br>
+      input( type='button' value='+' )
+      h3 Ingredients
+      p 
+         ol
+            li 
+               input( name='ingredient[]' type='text')
+               input( type='button' value='Details' )
+            li 
+               input( type='button' value='+' )
+
+      h3 Instructions
+      p 
+         ol
+            li 
+               input( name='text[]' type='text')
+               input( type='button' value='Details' )
+            li
+               input( type='button' value='+' )
+      p
+        input( type='Submit' value='Done' )

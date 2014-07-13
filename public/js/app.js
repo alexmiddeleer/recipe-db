@@ -14,6 +14,10 @@ recipeApp.config(['$routeProvider',
            templateUrl: '/ng-views/recipe',
            controller: 'recipe-ctrl'
         }).
+        when('/new-recipe', {
+           templateUrl: '/ng-views/new-recipe',
+           controller: 'new-recipe-ctrl'
+        }).
         otherwise({
            redirectTo: '/recipes'
         });

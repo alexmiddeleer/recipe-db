@@ -15,3 +15,7 @@ recipeControllers.controller('recipe-ctrl', function ($scope, $http, $routeParam
     $scope.steps = data.steps;
   });
 });
+
+// Controller for new recipe view
+recipeControllers.controller('new-recipe-ctrl', function ($scope, $http) {
+});

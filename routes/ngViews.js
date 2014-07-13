@@ -20,5 +20,6 @@ function register (viewName) {
 
 register('recipe-list');
 register('recipe');
+register('new-recipe');
 
 module.exports = router;

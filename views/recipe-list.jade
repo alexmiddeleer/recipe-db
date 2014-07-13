@@ -1,10 +1,12 @@
 div( ng-controller='recipe-list-ctrl' )
-  h1
-    | {{title}}
-  | Search for a recipe:
-  input( ng-model='recipeSearchText' )
-  h3 Your Recipes:
-  ul
-    li( ng-repeat='recipe in recipes | filter:recipeSearchText' )
-      a.recipeName( ng-href='#/recipe/{{recipe.id}}' )
-        | {{recipe.name}}
+   h1
+      | {{title}}
+   | Search for a recipe:
+   input( ng-model='recipeSearchText' )
+   p
+      a.button( href='#/new-recipe' ) Add Recipe
+   h3 Your Recipes:
+   ul
+      li( ng-repeat='recipe in recipes | filter:recipeSearchText' )
+         a.recipeName( ng-href='#/recipe/{{recipe.id}}' )
+            | {{recipe.name}}
