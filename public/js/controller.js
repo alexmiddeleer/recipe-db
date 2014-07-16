@@ -18,4 +18,40 @@ recipeControllers.controller('recipe-ctrl', function ($scope, $http, $routeParam
 
 // Controller for new recipe view
 recipeControllers.controller('new-recipe-ctrl', function ($scope, $http) {
+   $scope.instructions = [{}];
+   $scope.ingredients = [{}];
+   $scope.categories = [{}];
+
+   $scope.addInstr = function() {
+      $scope.instructions.push({});
+   };
+
+   $scope.addIngr = function() {
+      $scope.ingredients.push({});
+   };
+
+   $scope.addCateg = function() {
+      $scope.categories.push({});
+   };
+
+   $scope.instrViewDetail = function(instr) {
+      //todo provide detail view
+   };
 });
+
+//   var instrIndex=0, ingrIndex=0, categIndex=0;
+//   $scope.instructions = [{index:instrIndex}];
+//   $scope.ingredients = [{index:ingrIndex}];
+//   $scope.categories = [{index:categIndex}];
+//
+//   $scope.addInstr = function() {
+//      $scope.instructions.push({index:instrIndex++});
+//   };
+//
+//   $scope.addIngr = function() {
+//      $scope.ingredients.push({index:ingrIndex++});
+//   };
+//
+//   $scope.addCateg = function() {
+//      $scope.categories.push({index:categIndex++});
+//   };

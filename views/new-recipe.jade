@@ -20,25 +20,27 @@ div( ng-controller='new-recipe-ctrl' )
       textArea( name='notes' placeholder='This will be shown near the recipe\'s instructions' )
       h3 Categories
       p Adding categories can help you stay organized; For example, you can browse or search for recipes by category.
-      input( name='categories' type='text')
-      | <br>
-      input( type='button' value='+' )
+         ul
+            li( ng-repeat='category in categories' )
+               input( name='categories' type='text' ng-model='category.category')
+            li 
+               input( type='button' value='+' ng-click='addCateg()' )
       h3 Ingredients
       p 
          ol
-            li 
-               input( name='ingredient[]' type='text')
+            li( ng-repeat='ingredient in ingredients' )
+               input( name='ingredient[]' type='text' ng-model='ingredient.text')
                input( type='button' value='Details' )
             li 
-               input( type='button' value='+' )
+               input( type='button' value='+' ng-click='addIngr()' )
 
       h3 Instructions
       p 
          ol
-            li 
-               input( name='text[]' type='text')
-               input( type='button' value='Details' )
+            li( ng-repeat='instruction in instructions' )
+               input( name='text[]' type='text' ng-model='instruction.text' )
+               input( type='button' value='Details' ng-click='detailViewInstr(instruction)' )
             li
-               input( type='button' value='+' )
+               input( type='button' value='+' ng-click='addInstr()' )
       p
         input( type='Submit' value='Done' )
