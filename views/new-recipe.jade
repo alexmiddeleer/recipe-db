@@ -23,16 +23,16 @@ div( ng-controller='new-recipe-ctrl' )
          ul
             li( ng-repeat='category in categories' )
                input( name='categories' type='text' ng-model='category.category')
-            li 
-               input( type='button' value='+' ng-click='addCateg()' )
+            | <br>
+            input( type='button' value='+' ng-click='addCateg()' )
       h3 Ingredients
       p 
          ol
             li( ng-repeat='ingredient in ingredients' )
                input( name='ingredient[]' type='text' ng-model='ingredient.text')
                input( type='button' value='Details' )
-            li 
-               input( type='button' value='+' ng-click='addIngr()' )
+            | <br>
+            input( type='button' value='+' ng-click='addIngr()' )
 
       h3 Instructions
       p 
@@ -40,7 +40,7 @@ div( ng-controller='new-recipe-ctrl' )
             li( ng-repeat='instruction in instructions' )
                input( name='text[]' type='text' ng-model='instruction.text' )
                input( type='button' value='Details' ng-click='detailViewInstr(instruction)' )
-            li
-               input( type='button' value='+' ng-click='addInstr()' )
+            | <br>
+            input( type='button' value='+' ng-click='addInstr()' )
       p
         input( type='Submit' value='Done' )
