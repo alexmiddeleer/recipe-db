@@ -3,33 +3,33 @@ div( ng-controller='new-recipe-ctrl' )
     fieldset
       legend New Recipe
       p Name: 
-         input( type='text' placeholder='Recipe Name')
+         input( ng-model='recipe.name' type='text' placeholder='Recipe Name')
          | Source: 
-         input( name='source' type='text' placeholder='AFoodBlog.com')
+         input( ng-model='recipe.source' name='source' type='text' placeholder='AFoodBlog.com')
          | Author: 
-         input( name='author' type='text') 
+         input( ng-model='recipe.author' name='author' type='text') 
          | Serves:
-         input( name='serves' type='number')
+         input( ng-model='recipe.serves' name='serves' type='number')
       h3 Cook Time 
       p
          | Hours: 
-         input( name='cookTimeHrs' type='number')
+         input( ng-model='recipe.cookTimeHrs' name='cookTimeHrs' type='number')
          | Minutes: 
-         input( name='cookTimeMins' type='number')
+         input( ng-model='recipe.cookTimeMins' name='cookTimeMins' type='number')
       h3 Notes
       textArea( name='notes' placeholder='This will be shown near the recipe\'s instructions' )
       h3 Categories
       p Adding categories can help you stay organized; For example, you can browse or search for recipes by category.
          ul
-            li( ng-repeat='category in categories' )
-               input( name='categories' type='text' ng-model='category.category')
+            li( ng-repeat='category in recipe.categories' )
+               input( type='text' ng-model='recipe.categories[$index].name')
             | <br>
             input( type='button' value='+' ng-click='addCateg()' )
       h3 Ingredients
       p 
          ol
-            li( ng-repeat='ingredient in ingredients' )
-               input( name='ingredient[]' type='text' ng-model='ingredient.text')
+            li( ng-repeat='ingredient in recipe.ingredients' )
+               input( type='text' ng-model='recipe.ingredients[$index].name')
                input( type='button' value='Details' )
             | <br>
             input( type='button' value='+' ng-click='addIngr()' )
@@ -37,10 +37,10 @@ div( ng-controller='new-recipe-ctrl' )
       h3 Instructions
       p 
          ol
-            li( ng-repeat='instruction in instructions' )
-               input( name='text[]' type='text' ng-model='instruction.text' )
+            li( ng-repeat='instruction in recipe.instructions' )
+               input( type='text' ng-model='recipe.instructions[$index].text' )
                input( type='button' value='Details' ng-click='detailViewInstr(instruction)' )
             | <br>
             input( type='button' value='+' ng-click='addInstr()' )
       p
-        input( type='Submit' value='Done' )
+        input( type='Submit' value='Done' ng-click='submitNewRecipe()' )

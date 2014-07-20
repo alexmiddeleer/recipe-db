@@ -18,40 +18,29 @@ recipeControllers.controller('recipe-ctrl', function ($scope, $http, $routeParam
 
 // Controller for new recipe view
 recipeControllers.controller('new-recipe-ctrl', function ($scope, $http) {
-   $scope.instructions = [{}];
-   $scope.ingredients = [{}];
-   $scope.categories = [{}];
+   var instrIndex=0, ingrIndex=0;
+   $scope.recipe = $scope.recipe || {};
+   $scope.recipe.instructions     = [{index: 0}];
+   $scope.recipe.ingredients      = [{index: 0}];
+   $scope.recipe.categories       = [{}];
 
    $scope.addInstr = function() {
-      $scope.instructions.push({});
-   };
+      $scope.recipe.instructions.push({index:++instrIndex});
+    };
 
    $scope.addIngr = function() {
-      $scope.ingredients.push({});
+      $scope.recipe.ingredients.push({index:++ingrIndex});
    };
 
    $scope.addCateg = function() {
-      $scope.categories.push({});
+      $scope.recipe.categories.push({});
    };
 
    $scope.instrViewDetail = function(instr) {
       //todo provide detail view
    };
-});
 
-//   var instrIndex=0, ingrIndex=0, categIndex=0;
-//   $scope.instructions = [{index:instrIndex}];
-//   $scope.ingredients = [{index:ingrIndex}];
-//   $scope.categories = [{index:categIndex}];
-//
-//   $scope.addInstr = function() {
-//      $scope.instructions.push({index:instrIndex++});
-//   };
-//
-//   $scope.addIngr = function() {
-//      $scope.ingredients.push({index:ingrIndex++});
-//   };
-//
-//   $scope.addCateg = function() {
-//      $scope.categories.push({index:categIndex++});
-//   };
+   $scope.submitNewRecipe = function() {
+      $http.post('/data/new-recipe/',$scope.recipe);
+   };
+});

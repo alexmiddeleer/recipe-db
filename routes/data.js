@@ -26,4 +26,13 @@ router.get('/recipe/:recipeID', function(req, res) {
    }, dbNotReady);
 });
 
+router.post('/new-recipe/', function(req, res) {
+   var ingredients = req.body.ingredients;
+   var categories  = req.body.categories;
+   var instructions  = req.body.instructions;
+   console.log(ingredients);
+   console.log(instructions);
+   console.log(categories);
+});
+
 module.exports = router;
