@@ -9,32 +9,39 @@ var sqlite3 = require('sqlite3').verbose()
 
 db = new sqlite3.Database(dbName, sqlite3.OPEN_READONLY
    , function(err) {
-       err && eventEmitter.emit('error', dbNotReady);
+       err && eventEmitter.emit('error', errNotRdy);
        ready=true;
    }
 );
 
-function getRecipes(userID, cb, notReady){
+function checkDBThen (cb) {
    if( ready ){
-       recipeDM.getRecipes(db, userID, function(recipes) {
-          cb(recipes);
-       });
+      cb();
    } else {
-      notReady(true);
+      eventEmitter.emit('error', errNotRdy);
    }
+}
+
+function getRecipes(userID, cb){
+   checkDBThen(function() {
+      recipeDM.getRecipes(db, userID, cb);
+   });
 };
 
-function getRecipe(userID, recipeID, cb, notReady){
-   if( ready ){
-       recipeDM.getRecipe(db, userID, recipeID, function(recipe) {
-          cb(recipe);
-       });
-   } else {
-      notReady(true);
-   }
-};
+function getRecipe(userID, recipeID, cb){
+   checkDBThen(function() {
+      recipeDM.getRecipe(db, userID, recipeID, cb);
+   });
+}
+
+function newRecipe (data, cb) {
+   checkDBThen( function() {
+      recipeDM.newRecipe(db, data, cb);
+  });
+}
 
 module.exports = {
-   getRecipes: getRecipes,
-   getRecipe: getRecipe
+   getRecipes: getRecipes
+   , getRecipe: getRecipe
+   , newRecipe: newRecipe
 };

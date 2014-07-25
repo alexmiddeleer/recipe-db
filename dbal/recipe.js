@@ -75,6 +75,11 @@ getRecipe = function(db, userID, recipeID, cb){
    });
 };
 
+function newRecipe (db, data, cb) {
+   // var stepsQuery = 'INSERT INTO recipe u
+   // ;
+}
+
 module.exports = {
    getRecipes: getRecipes
    , getRecipe: getRecipe

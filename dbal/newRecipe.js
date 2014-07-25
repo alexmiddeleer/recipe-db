@@ -3,8 +3,7 @@ var eventEmitter = new (require('events')).EventEmitter()
 ;
 
 function newRecipe (db, formData, cb) {
-   // body...
-
+   
 }
 
 

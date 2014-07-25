@@ -27,12 +27,15 @@ router.get('/recipe/:recipeID', function(req, res) {
 });
 
 router.post('/new-recipe/', function(req, res) {
-   var ingredients = req.body.ingredients;
-   var categories  = req.body.categories;
-   var instructions  = req.body.instructions;
-   console.log(ingredients);
-   console.log(instructions);
-   console.log(categories);
+   var data = {
+      ingredients    : req.body.ingredients,
+      categories     : req.body.categories,
+      instructions   : req.body.instructions
+   };
+
+   dbal.newRecipe(data, dbNotReady, function(success) {
+      res.json({'success':success});
+   });
 });
 
 module.exports = router;
