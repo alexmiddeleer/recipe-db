@@ -1,18 +1,15 @@
-var sqlite3 = require('sqlite3').verbose()
-   , eventEmitter = new (require('events')).EventEmitter()
+var dbms = require('dbal/sqlite/sqlite.js')
    , ready = false
-   , db
    , dbName = 'recipes.db'
    , errNotRdy = 'The database failed to open'
    , recipeDM = require('./recipe.js')
+   , newRecipeDM = require('./newRecipe.js')
+   , db
 ;
 
-db = new sqlite3.Database(dbName, sqlite3.OPEN_READONLY
-   , function(err) {
-       err && eventEmitter.emit('error', errNotRdy);
-       ready=true;
-   }
-);
+db = dbms.init(dbName, function(err) {
+   ready = (typeof err == 'undefined') || (err === null) || (err === false);
+});
 
 function checkDBThen (cb) {
    if( ready ){
@@ -36,7 +33,7 @@ function getRecipe(userID, recipeID, cb){
 
 function newRecipe (data, cb) {
    checkDBThen( function() {
-      recipeDM.newRecipe(db, data, cb);
+      newRecipeDM.newRecipe(db, userID, data, cb);
   });
 }
 
