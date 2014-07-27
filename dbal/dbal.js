@@ -1,10 +1,11 @@
-var dbms = require('dbal/sqlite/sqlite.js')
+var dbms = require('./sqlite/sqlite.js')
    , ready = false
    , dbName = 'recipes.db'
    , errNotRdy = 'The database failed to open'
    , recipeDM = require('./recipe.js')
    , newRecipeDM = require('./newRecipe.js')
    , db
+   , userID = 1 // TODO
 ;
 
 db = dbms.init(dbName, function(err) {

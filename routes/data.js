@@ -27,13 +27,22 @@ router.get('/recipe/:recipeID', function(req, res) {
 });
 
 router.post('/new-recipe/', function(req, res) {
+   // console.log(req.body);
    var data = {
-      ingredients    : req.body.ingredients,
-      categories     : req.body.categories,
-      instructions   : req.body.instructions
+      ingredients   : req.body.ingredients,
+      categories    : req.body.categories,
+      instructions  : req.body.instructions,
+      name          : req.body.name,
+      source        : req.body.source,
+      author        : req.body.author,
+      serves        : req.body.serves,
+      cookTimeHrs   : req.body.cookTimeHrs,
+      cookTimeMins  : req.body.cookTimeMins
    };
+   // console.log('data is :');
+   // console.log(data);
 
-   dbal.newRecipe(data, dbNotReady, function(success) {
+   dbal.newRecipe(data, dbNotReady, function(err) {
       res.json({'success':success});
    });
 });

@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS recipe(
    , prepTimeHours INTEGER
    , prepTimeMinutes INTEGER
    , dateProp TEXT
-   , nutrNotes TEXT
+   , notes TEXT
 );
 
 CREATE TABLE IF NOT EXISTS food(
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS food(
    , userID INTEGER
    , categories TEXT
    , name TEXT
-   , nutrNotes TEXT
+   , notes TEXT
 );
 
 CREATE TABLE IF NOT EXISTS ingredient(
