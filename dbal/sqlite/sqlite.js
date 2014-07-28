@@ -14,7 +14,12 @@ function sqlString (s) {
    return '"' + s + '"';
 }
 
+function valuesString (a) {
+   return '(' + a.join(',') + ')';
+}
+
 module.exports = {
    init: init
    , sqlString : sqlString
+   , valuesString : valuesString
 };
