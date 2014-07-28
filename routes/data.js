@@ -5,7 +5,7 @@ var express = require('express')
 
 var router = express.Router();
 
-function dbNotReady () {
+function dbNotReady (res) {
   res.err('Sorry, the database is not ready.  Please try again in a moment');
 }
 
@@ -42,8 +42,11 @@ router.post('/new-recipe/', function(req, res) {
    // console.log('data is :');
    // console.log(data);
 
-   dbal.newRecipe(data, dbNotReady, function(err) {
-      res.json({'success':success});
+   dbal.newRecipe(data, function(err) {
+      if (err) {
+         console.log(err);
+      };
+      res.json({'success':true});
    });
 });
 

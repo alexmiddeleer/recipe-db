@@ -30,11 +30,14 @@ function newRecipe (db, userID, data, cb) {
       } else {
          // console.log('lastID is ' + this.lastID);
          var recipeID = this.lastID;
+         var finish = _.after(2, cb);
          addIngredients(recipeID, data.ingredients, db, function(err) {
-            //TODO
+            err && cb(err);
+            finish();
           });
          addInstructions(recipeID, data.instructions, db, function(err) {
-            //TODO
+            err && cb(err);
+            finish();
           });
       } 
    });
@@ -117,7 +120,7 @@ function addInstruction (recipeID, instruction, db, cb) {
       , instruction.index+1
    ];
    var q = q + valuesString(vals);
-   console.log('q is ' + q);
+   // console.log('q is ' + q);
    db.run(q, cb);
 }
 
