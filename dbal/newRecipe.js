@@ -30,7 +30,9 @@ function newRecipe (db, userID, data, cb) {
       } else {
          // console.log('lastID is ' + this.lastID);
          var recipeID = this.lastID;
-         var finish = _.after(2, cb);
+         var finish = _.after(2, function() {
+            cb(null, { recipeID: recipeID });
+         });
          addIngredients(recipeID, data.ingredients, db, function(err) {
             err && cb(err);
             finish();

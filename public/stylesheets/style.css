@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+.msg{
+   display:inline-block;
+   background-color: rgb(169, 223, 169);
+   padding:20px;
+}

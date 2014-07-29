@@ -42,11 +42,11 @@ router.post('/new-recipe/', function(req, res) {
    // console.log('data is :');
    // console.log(data);
 
-   dbal.newRecipe(data, function(err) {
+   dbal.newRecipe(data, function(err, data) {
       if (err) {
          console.log(err);
       };
-      res.json({'success':true});
+      res.json(data);
    });
 });
 

@@ -1,11 +1,13 @@
 div( ng-controller='recipe-ctrl' )
-  h1
-    | {{title}}
-  h3 Ingredients
-  ul
-    li( ng-repeat='ingredient in ingredients' )
-      | {{ ingredient.name }} 
-  h3 Instructions
-  ul
-    li( ng-repeat='step in steps' )
-      | {{ step }}
+   h1
+      | {{title}}
+   p.msg( ng-hide='!message' )
+      | {{message}}
+   h3 Ingredients
+   ul 
+      li( ng-repeat='ingredient in ingredients' )
+         | {{ ingredient.name }} 
+   h3 Instructions
+   ul 
+      li( ng-repeat='step in steps' )
+         | {{ step }}
