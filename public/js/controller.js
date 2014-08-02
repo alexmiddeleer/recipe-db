@@ -44,16 +44,27 @@ recipeControllers.controller('new-recipe-ctrl', function ($scope, $http, $locati
       //todo provide detail view
    };
 
+   var onSuccess = function(data) {
+      var recipeID = data.recipeID;
+      $location.path('/recipe/'+recipeID);
+      $location.search('new');
+   };
+   var onErr = function(data) {
+      console.error('the recipe creation reported an error');
+   };
+
    $scope.submitNewRecipe = function() {
+
       $http.post('/data/new-recipe/', $scope.recipe).
          success(function(data, status, headers, config) {
             console.log(data);
-            var recipeID = data.recipeID;
-            $location.path('/recipe/'+recipeID);
-            $location.search('new');
+            if (data.success) {
+               onSuccess(data.data)
+            } else {
+               onErr(data);
+            }
          }).
          error(function(data, status, headers, config) {
-            console.err('the recipe creation reported an error');
          });
    };
 });

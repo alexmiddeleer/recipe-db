@@ -1,6 +1,7 @@
 var express = require('express')
    , dbal = require('../dbal/dbal.js')
-   , testUser = 1;
+   , newRecipeFilter = require('../filters/new-recipe-filter.js')
+   , testUser = 1
 ;
 
 var router = express.Router();
@@ -27,27 +28,28 @@ router.get('/recipe/:recipeID', function(req, res) {
 });
 
 router.post('/new-recipe/', function(req, res) {
-   // console.log(req.body);
-   var data = {
-      ingredients   : req.body.ingredients,
-      categories    : req.body.categories,
-      instructions  : req.body.instructions,
-      name          : req.body.name,
-      source        : req.body.source,
-      author        : req.body.author,
-      serves        : req.body.serves,
-      cookTimeHrs   : req.body.cookTimeHrs,
-      cookTimeMins  : req.body.cookTimeMins
-   };
-   // console.log('data is :');
-   // console.log(data);
-
-   dbal.newRecipe(data, function(err, data) {
-      if (err) {
-         console.log(err);
-      };
-      res.json(data);
-   });
+   var result = newRecipeFilter.filter(req.body);
+   if (result.valid) {
+      dbal.newRecipe(result.data, function(err, data) {
+         if (err) {
+            res.json({
+               success:false,
+               errors:[err]
+            });
+         } else {
+            res.json({
+               success:true,
+               data:data
+            });
+         }
+      });
+   } else {
+      res.json({
+         success:false,
+         errors: result.errors,
+         missing: result.missing
+      });
+   }
 });
 
 module.exports = router;
